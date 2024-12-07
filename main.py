@@ -6,7 +6,7 @@ fileTypes = [
             {
                 "foldername": "/pictures",
                 "fileType": [
-                    ".png", ".jpg", ".jpeg"
+                    ".png", ".jpg", ".jpeg", ".webp"
                 ]
             },
             {
@@ -26,11 +26,18 @@ fileTypes = [
 def fetchfiles(folder):
     cleanFolder = "/Users/ishanghosh/" + folder + "/"
     files = os.listdir("/Users/ishanghosh/" + folder + "/")
+    print("*****files in API*****" + str(files))
     sr = sortfiles(files, fileTypes, cleanFolder)
     PicsArray = sr.sort()[0]
+    TextArray = sr.sort()[1]
+    AppsArray = sr.sort()[2]
+    OtherArray = sr.sort()[3]
     filesToReturn = {
         "files": files,
-        "Pics": PicsArray
+        "Pics": PicsArray,
+        "Text": TextArray,
+        "Apps": AppsArray,
+        "other": OtherArray
     }
     return jsonify(filesToReturn), 200
 
